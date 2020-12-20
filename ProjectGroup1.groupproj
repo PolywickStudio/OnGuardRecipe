@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{CBA8FA82-F548-4C8A-B3E6-4299EADE1BB4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="digitalriver.keyissuance.yourapp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="YourApp.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="digitalriver_keyissuance_yourapp">
+        <MSBuild Projects="digitalriver.keyissuance.yourapp.dproj"/>
+    </Target>
+    <Target Name="digitalriver_keyissuance_yourapp:Clean">
+        <MSBuild Projects="digitalriver.keyissuance.yourapp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="digitalriver_keyissuance_yourapp:Make">
+        <MSBuild Projects="digitalriver.keyissuance.yourapp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="YourApp">
+        <MSBuild Projects="YourApp.dproj"/>
+    </Target>
+    <Target Name="YourApp:Clean">
+        <MSBuild Projects="YourApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="YourApp:Make">
+        <MSBuild Projects="YourApp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="digitalriver_keyissuance_yourapp;YourApp"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="digitalriver_keyissuance_yourapp:Clean;YourApp:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="digitalriver_keyissuance_yourapp:Make;YourApp:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
